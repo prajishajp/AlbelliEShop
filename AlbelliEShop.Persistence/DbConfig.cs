@@ -1,4 +1,4 @@
-﻿namespace AlbelliEShop.Core
+﻿namespace AlbelliEShop.Persistence
 {
     public class DbConfig
     {

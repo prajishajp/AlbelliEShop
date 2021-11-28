@@ -1,4 +1,4 @@
-﻿namespace AlbelliEShop.Core
+﻿namespace AlbelliEShop.Domain
 {
     public class ProductCatalog
     {

@@ -1,8 +1,11 @@
 using AlbelliEShop.Core;
+using AlbelliEShop.Persistence;
+using AlbelliEShop.Persistence.Contract;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddSingleton<IDbClient, DbClient>();
+builder.Services.AddSingleton<IOrderRepository, OrderRepository>();
 builder.Services.Configure<DbConfig>(builder.Configuration);
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();

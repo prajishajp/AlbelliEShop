@@ -1,7 +1,8 @@
-﻿using Microsoft.Extensions.Options;
+﻿using AlbelliEShop.Domain;
+using Microsoft.Extensions.Options;
 using MongoDB.Driver;
 
-namespace AlbelliEShop.Core
+namespace AlbelliEShop.Persistence
 {
     public class DbClient : IDbClient
     {

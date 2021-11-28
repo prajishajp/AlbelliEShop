@@ -1,5 +1,7 @@
 using AlbelliEShop.Core;
 using AlbelliEShop.Core.Model;
+using AlbelliEShop.Domain;
+using AlbelliEShop.Persistence.Contract;
 using AlbelliEShop.WebApi.Controllers;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
@@ -10,7 +12,7 @@ namespace AlbelliEShop.Tests
 {
     public class AlbelliEShopApiShould
     {
-        public AlbelliEShopApiShould(){}
+        public AlbelliEShopApiShould() { }
 
         #region GetAllOrdersTest
         [Fact]
@@ -82,7 +84,7 @@ namespace AlbelliEShop.Tests
             var mockOrder = new Order()
             {
                 Id = "mock_Id",
-                Products = new List<Core.Product> { new Core.Product
+                Products = new List<Domain.Product> { new Domain.Product
                 {
                     ProductName = "photobook",
                     Quantity = 2,
@@ -102,6 +104,54 @@ namespace AlbelliEShop.Tests
             Assert.IsType<OrderResponse>(item);
             Assert.NotNull(okResult);
             Assert.Equal(200, okResult.StatusCode);
+        }
+        [Fact]
+        public void NotPlaceOrderWhenProductTypeIsInvalid()
+        {
+            //Arrange
+            var mockOrder = new Order()
+            {
+                Id = "mock_Id",
+                Products = new List<Domain.Product> { new Domain.Product
+                {
+                    ProductName = "invalid_product",
+                    Quantity = 2,
+                } },
+                RequiredBinWidthInMillimeters = 0
+            };
+            var mockOrderRepository = new Mock<IOrderRepository>();
+            mockOrderRepository.Setup(p => p.AddOrderInDb(It.IsAny<Order>())).Returns(new Order());
+            OrderService orderService = new OrderService(mockOrderRepository.Object);
+
+            //Act
+            var result = orderService.PlaceOrder(mockOrder);
+
+            //Assert
+            Assert.Null(result);
+        }
+        [Fact]
+        public void CalculateBinWidthWhilePlacingOrder()
+        {
+            //Arrange
+            var mockOrder = new Order()
+            {
+                Id = "mock_Id",
+                Products = new List<Domain.Product> { new Domain.Product
+                {
+                    ProductName = "mug",
+                    Quantity = 2,
+                } },
+                RequiredBinWidthInMillimeters = 94
+            };
+            var mockOrderRepository = new Mock<IOrderRepository>();
+            mockOrderRepository.Setup(p => p.AddOrderInDb(It.IsAny<Order>())).Returns(new Order());
+            OrderService orderService = new OrderService(mockOrderRepository.Object);
+
+            //Act
+            var result = orderService.PlaceOrder(mockOrder);
+
+            //Assert
+            Assert.NotNull(result);
         }
         #endregion PlaceOrderTest
     }

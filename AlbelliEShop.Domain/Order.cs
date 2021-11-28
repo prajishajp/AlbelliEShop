@@ -1,6 +1,6 @@
 ﻿using MongoDB.Bson.Serialization.Attributes;
 
-namespace AlbelliEShop.Core
+namespace AlbelliEShop.Domain
 {
     public class Order
     {

@@ -1,4 +1,6 @@
-﻿namespace AlbelliEShop.Core
+﻿using AlbelliEShop.Domain;
+
+namespace AlbelliEShop.Core
 {
     public interface IOrderService
     {

@@ -1,5 +1,6 @@
 using AlbelliEShop.Core;
 using AlbelliEShop.Core.Model;
+using AlbelliEShop.Domain;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AlbelliEShop.WebApi.Controllers
@@ -32,10 +33,10 @@ namespace AlbelliEShop.WebApi.Controllers
         public IActionResult PlaceOrder(OrderRequest orderRequest)
         {
             Order order = new Order();
-            order.Products = new List<Core.Product>();
+            order.Products = new List<Domain.Product>();
             foreach (var item in orderRequest.Products)
             {
-                var product = new Core.Product();
+                var product = new Domain.Product();
                 product.Quantity = item.Quantity;
                 product.ProductName = item.Name;
                 order.Products.Add(product);

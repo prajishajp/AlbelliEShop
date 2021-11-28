@@ -1,6 +1,7 @@
-﻿using MongoDB.Driver;
+﻿using AlbelliEShop.Domain;
+using MongoDB.Driver;
 
-namespace AlbelliEShop.Core
+namespace AlbelliEShop.Persistence
 {
     public interface IDbClient
     {

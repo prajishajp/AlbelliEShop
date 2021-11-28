@@ -3,11 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31912.275
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlbelliEShop.WebApi", "AlbelliEShop.WebApi\AlbelliEShop.WebApi.csproj", "{B0134D4E-8A77-494B-9EC1-8AAA6C8646A5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AlbelliEShop.WebApi", "AlbelliEShop.WebApi\AlbelliEShop.WebApi.csproj", "{B0134D4E-8A77-494B-9EC1-8AAA6C8646A5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlbelliEShop.Core", "AlbelliEShop.Core\AlbelliEShop.Core.csproj", "{EB08882B-DFA8-41A9-A489-A7AC2E1E8E7E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AlbelliEShop.Core", "AlbelliEShop.Core\AlbelliEShop.Core.csproj", "{EB08882B-DFA8-41A9-A489-A7AC2E1E8E7E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlbelliEShop.Tests", "AlbelliEShop.Tests\AlbelliEShop.Tests.csproj", "{FA4CB919-B7B8-4ECA-9B17-9A3E016A4AE1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AlbelliEShop.Tests", "AlbelliEShop.Tests\AlbelliEShop.Tests.csproj", "{FA4CB919-B7B8-4ECA-9B17-9A3E016A4AE1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlbelliEShop.Persistence", "AlbelliEShop.Persistence\AlbelliEShop.Persistence.csproj", "{2CB3BC19-C0B6-4975-AA1A-7906E1CF91FA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlbelliEShop.Domain", "AlbelliEShop.Domain\AlbelliEShop.Domain.csproj", "{CFC61E78-ACA6-496E-9583-12F9C9040D74}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +31,14 @@ Global
 		{FA4CB919-B7B8-4ECA-9B17-9A3E016A4AE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FA4CB919-B7B8-4ECA-9B17-9A3E016A4AE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FA4CB919-B7B8-4ECA-9B17-9A3E016A4AE1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2CB3BC19-C0B6-4975-AA1A-7906E1CF91FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2CB3BC19-C0B6-4975-AA1A-7906E1CF91FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2CB3BC19-C0B6-4975-AA1A-7906E1CF91FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2CB3BC19-C0B6-4975-AA1A-7906E1CF91FA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CFC61E78-ACA6-496E-9583-12F9C9040D74}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CFC61E78-ACA6-496E-9583-12F9C9040D74}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CFC61E78-ACA6-496E-9583-12F9C9040D74}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CFC61E78-ACA6-496E-9583-12F9C9040D74}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

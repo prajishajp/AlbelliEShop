@@ -1,4 +1,6 @@
-﻿using MongoDB.Driver;
+﻿using AlbelliEShop.Domain;
+using AlbelliEShop.Persistence.Contract;
+using MongoDB.Driver;
 
 namespace AlbelliEShop.Core
 {
@@ -12,11 +14,11 @@ namespace AlbelliEShop.Core
             new ProductCatalog{ Name = "cards", WidthInMillimeters = 4.7},
             new ProductCatalog{ Name = "mug", WidthInMillimeters = 94}
         };
-        private readonly IMongoCollection<Order> _orders;
+        private readonly IOrderRepository _orderRepository;
 
-        public OrderService(IDbClient dbClient)
+        public OrderService(IOrderRepository orderRepository)
         {
-            _orders = dbClient.GetOrdersCollection();
+            _orderRepository = orderRepository;
         }
 
         public Order PlaceOrder(Order order)
@@ -27,8 +29,8 @@ namespace AlbelliEShop.Core
                 if (isAValidProduct)
                 {
                     order.RequiredBinWidthInMillimeters = CalculateBinWidth(order.Products);
-                    _orders.InsertOne(order);
-                    return order;
+                    var placedOrder = _orderRepository.AddOrderInDb(order);
+                    return placedOrder;
                 }
                 else
                 {
@@ -45,11 +47,13 @@ namespace AlbelliEShop.Core
 
         public List<Order> GetAllOrders()
         {
-            return _orders.Find(order => true).ToList();
+            var allOrders = _orderRepository.FetchAllOrdersFromDb();
+            return allOrders;
         }
         public Order GetOrderById(string id)
         {
-            return _orders.Find(order => order.Id == id).First();
+            var order = _orderRepository.FetchOrderByIdFromDb(id);
+            return order;
         }
 
         #region Private Methods
