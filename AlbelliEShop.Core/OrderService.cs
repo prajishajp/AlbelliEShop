@@ -21,24 +21,39 @@ namespace AlbelliEShop.Core
 
         public Order PlaceOrder(Order order)
         {
-            bool isAValidProduct = isValidProduct(order.Products);
-            if (isAValidProduct)
+            try
             {
-                // calculate required bin width logic: to be added
-                _orders.InsertOne(order);
-                return order;
+                bool isAValidProduct = CheckProductValidity(order.Products);
+                if (isAValidProduct)
+                {
+                    order.RequiredBinWidthInMillimeters = CalculateBinWidth(order.Products);
+                    _orders.InsertOne(order);
+                    return order;
+                }
+                else
+                {
+                    return null;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                return null;
+
+                throw;
             }
+
         }
 
         public List<Order> GetAllOrders()
         {
             return _orders.Find(order => true).ToList();
         }
-        private bool isValidProduct(List<Product> products)
+        public Order GetOrderById(string id)
+        {
+            return _orders.Find(order => order.Id == id).First();
+        }
+
+        #region Private Methods
+        private bool CheckProductValidity(List<Product> products)
         {
             foreach (var product in products)
             {
@@ -49,10 +64,31 @@ namespace AlbelliEShop.Core
             }
             return true;
         }
-
-        public Order GetOrderById(string id)
+        private double CalculateBinWidth(List<Product> products)
         {
-            return _orders.Find(order => order.Id == id).First();
+            double requiredBinWidthInMillimeters = 0;
+
+            foreach (Product product in products)
+            {
+                double productBinWidth = productCatalog.Where(x => x.Name == product.ProductName.ToLower()).First().WidthInMillimeters;
+                if (product.ProductName.ToLower() == "mug")
+                {
+                    int mugWidthQuantity = 0;
+                    if ((int)product.Quantity % 4 == 0)
+                    {
+                        mugWidthQuantity = ((int)product.Quantity / 4);
+                    }
+                    else
+                        mugWidthQuantity = ((int)product.Quantity / 4) + 1;
+
+                    requiredBinWidthInMillimeters += productBinWidth * mugWidthQuantity;
+                }
+                else
+                    requiredBinWidthInMillimeters += productBinWidth * product.Quantity;
+            }
+
+            return requiredBinWidthInMillimeters;
         }
+        #endregion
     }
 }

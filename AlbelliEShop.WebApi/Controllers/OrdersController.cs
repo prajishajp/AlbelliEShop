@@ -29,7 +29,7 @@ namespace AlbelliEShop.WebApi.Controllers
         /// <param name="orderRequest"></param>
         /// <returns></returns>
         [HttpPost]
-        public IActionResult CreateOrder(OrderRequest orderRequest)
+        public IActionResult PlaceOrder(OrderRequest orderRequest)
         {
             Order order = new Order();
             order.Products = new List<Core.Product>();
@@ -49,7 +49,7 @@ namespace AlbelliEShop.WebApi.Controllers
             {
                 var orderResponse = new OrderResponse();
                 orderResponse.Id = response.Id;
-                orderResponse.RequiredBinWidth = response.RequiredBinWidth;
+                orderResponse.RequiredBinWidthInMillimeters = response.RequiredBinWidthInMillimeters;
                 return Ok(orderResponse);
             }
         }
@@ -61,7 +61,15 @@ namespace AlbelliEShop.WebApi.Controllers
         [HttpGet("{id}", Name = "GetOrder")]
         public IActionResult GetOrder(string id)
         {
-            return Ok(_orderService.GetOrderById(id));
+            if (id != null)
+            {
+                return Ok(_orderService.GetOrderById(id));
+            }
+            else
+            {
+                return BadRequest("Please enter Id");
+            }
+
         }
     }
 }

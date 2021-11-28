@@ -9,6 +9,6 @@ namespace AlbelliEShop.Core.Model
     public class OrderResponse
     {
         public string Id { get; set; }
-        public decimal RequiredBinWidth { get; set; }
+        public double RequiredBinWidthInMillimeters { get; set; }
     }
 }

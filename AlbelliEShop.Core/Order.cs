@@ -8,6 +8,6 @@ namespace AlbelliEShop.Core
         [BsonRepresentation(MongoDB.Bson.BsonType.ObjectId)]
         public string Id { get; set; }
         public List<Product> Products { get; set; }
-        public decimal RequiredBinWidth { get; set; }
+        public double RequiredBinWidthInMillimeters { get; set; }
     }
 }
