@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>AlbelliEShop.WebApi</name>
+    </assembly>
+    <members>
+        <member name="M:AlbelliEShop.WebApi.Controllers.OrdersController.GetAllOrders">
+            <summary>
+            Fetches all orders and its details
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:AlbelliEShop.WebApi.Controllers.OrdersController.CreateOrder(AlbelliEShop.Core.Model.OrderRequest)">
+            <summary>
+            Creates an order and calculates the required bin width
+            </summary>
+            <param name="orderRequest"></param>
+            <returns></returns>
+        </member>
+        <member name="M:AlbelliEShop.WebApi.Controllers.OrdersController.GetOrder(System.String)">
+            <summary>
+            Fetches order details based on Id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
